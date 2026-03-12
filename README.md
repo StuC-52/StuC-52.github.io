@@ -1,187 +1,125 @@
-<img width="1943" height="1093" alt="image" src="https://github.com/user-attachments/assets/cc2ff955-17c2-48c7-81c8-479a0f061850" />
 
-# DevPortfolio Template
+# Game Development Portfolio Template
 
-A modern, minimalist portfolio template built with Astro and Tailwind CSS. Perfect for developers looking to showcase their skills, experience, and projects in a clean, professional way.
+This is a simple and customizable portfolio template for game developers. It allows you to showcase your personal information, CV, and game projects in a structured way.
+You can check out [my portfolio](https://solilius.github.io/portfolio) for example
 
-This was completely rebuilt from the ground up from V1. This template was built to be entirely ready to go with a quick config edit (see below) but also provides the ability to easily extend in whatever way you want.
+## Prerequisites
 
-This template also comes with `CLAUDE.md` and `.cursor/rules` files for easy integration with your existing AI workflows.
+- Have a GitHub account.
+- Fork or clone this repository to your account (if not already done).
 
-> **📬 Connect & Share!**  
-> For questions and updates, feel free to reach out on [**X (Twitter)**](https://x.com/rfitzio).  
-> If you've built and published your personal site with this template, I'd love to see it! Send me a DM 🚀
+## 🚀 Getting Started
 
-## Preview
+Follow these steps to set up and customize your portfolio.
 
-To view a live preview of the site, [click here](https://ryanfitzgerald.github.io/devportfolio/).
+### 1️⃣ Add Your CV
+Place a **PDF file** of your CV in the following directory:
 
-## Built With
+`public/files/my_cv.pdf`
 
-- **[Astro](https://astro.build/)** - Static site generator for modern web apps
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Tabler Icons](https://tabler.io/icons)** - Free and open source icons
-- **TypeScript** - For type-safe configuration
 
-## Updating the Template
+### 2️⃣ Add Game Images
+For each game you want to showcase, create a folder inside:
 
-### Configuration
+`public/images/games/my-awesome-game`
 
-The template is designed to be easily customizable through the `src/config.ts` file. This single file controls:
+Each folder should contain the images related to that game.<br />
+`public/images/games/my-awesome-game/Game_Screenshot_1.jpg`<br />
+`public/images/games/my-awesome-game/Game_Screenshot_2.jpg`<br />
+`public/images/games/my-awesome-game/Game_Screenshot_3.jpg`
 
-- **Personal Information**: Name, title, description
-- **Accent Color**: Primary color theme (changing this will change the accent color site wide)
-- **Social Links**: Email, LinkedIn, Twitter, GitHub (all optional)
-- **About Section**: Personal bio/description
-- **Skills**: List of technical skills
-- **Projects**: Project showcase with descriptions and links
-- **Experience**: Work history with bullet points
-- **Education**: Educational background and achievements
+### 3️⃣ Set Your Profile Picture
+Replace the default profile image with your own:
 
-If skills, projects, experience, or education are removed from the config, those sections will be hidden entirely.
+`public/images/Profile.jpg`
 
-### Example structures
 
-Here's what the config data structure looks like for each section:
+### 4️⃣ Set the Favicon
+Replace the default favicon with your custom icon:
 
-#### Basic Information
-```typescript
-name: "Your Name",
-title: "Your Job Title",
-description: "Brief site description",
-accentColor: "#1d4ed8", // Hex color for theme
-```
+`public/images/favicon.ico`
 
-#### Social Links (all optional)
-```typescript
-social: {
-  email: "your-email@example.com",
-  linkedin: "https://linkedin.com/in/yourprofile",
-  twitter: "https://twitter.com/yourprofile", 
-  github: "https://github.com/yourusername",
-}
-```
+### 5️⃣ Update Your Personal Information
+Edit the following file to add your personal details:
 
-#### About Section
-```typescript
-aboutMe: "A paragraph describing yourself, your background, interests, and what you're passionate about. This appears in the About section of your portfolio."
-```
+`src/data.ts`
 
-#### Skills
-```typescript
-skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"]
-```
+Inside this file, update the `personalInfo` object with details such as:
 
-#### Projects
-```typescript
-projects: [
-  {
-    name: "Project Name",
-    description: "Brief description of what the project does and its impact",
-    link: "https://github.com/yourusername/project",
-    skills: ["React", "Node.js", "AWS"], // Technologies used
+~~~js
+const PersonalInfo: AboutMeData = {
+  name: "YOUR_NAME",
+  role: "YOUR_ROLE",
+  introduction: "SHORT_INTRODUCTION",
+  description: "TELL_ABOUT_YOURSELF",
+  image: `${process.env.PUBLIC_URL}/images/Profile.jpg`,
+  cvUri: `${process.env.PUBLIC_URL}/files/YOUR_CV.pdf`,
+  links: {
+    github: "https://github.com/NAME",
+    itchIO: "https://NAME.itch.io",
+    linkedIn: "https://www.linkedin.com/in/NAME",
   }
-]
-```
+};
+~~~
 
-#### Experience
-```typescript
-experience: [
+### 6️⃣ Add Your Games
+In the same `src/data.ts` file, update the `games` array to include your projects.
+~~~js
+const games: Game[] = [
   {
-    company: "Company Name",
-    title: "Your Job Title",
-    dateRange: "Jan 2022 - Present",
-    bullets: [
-      "Led development of microservices architecture serving 1M+ users",
-      "Reduced API response times by 40% through optimization",
-      "Mentored team of 5 junior developers",
+    name: "GAME_NAME",
+    description: "GAME_DESCRIPTION",
+    genres: ["GAME_GENRE", "GAME_GENRE..."],
+    platforms: [Platform.Windows],
+    engine: GameEngine.Unity,
+    source: { name: "COURSE_NAME"; url: "https://www.udemy.com/course/SOME_COURSE" } // Optional
+    links: [
+      { source: LinkImageSource.Github, url: "https://github.com/YOUR_REPO" },
+      { source: LinkImageSource.ItchIo, url: "https://YOUR_ITCH.itch.io/GAME_NAME" },
+    ],
+    media: [
+      { source: "/images/games/GAME_NAME/Screenshot_1.png", type: MediaType.Image },
+      { source: "https://www.youtube.com/embed/dQw4w9WgXcQ", type: MediaType.YouTube },
+      { source: "/images/games/GAME_NAME/Screenshot_2.png", type: MediaType.Image },
+      { source: "/images/games/GAME_NAME/Screenshot_3.png", type: MediaType.Image },
+      { source: "/images/games/GAME_NAME/Screenshot_4.png", type: MediaType.Image },
     ],
   }
-]
-```
+];
+~~~
 
-#### Education
-```typescript
-education: [
-  {
-    school: "University Name",
-    degree: "Bachelor of Science in Computer Science",
-    dateRange: "2014 - 2018",
-    achievements: [
-      "Graduated Magna Cum Laude with 3.8 GPA",
-      "Dean's List all semesters",
-      "President of Computer Science Club"
-    ]
-  }
-]
-```
+### 7️⃣ Add Your Number to .env file
+1. Create `.env` file on the root 
+2. Add your WhatsApp number (including country code)
 
-### Icons
+~~~
+REACT_APP_WA_NUMBER=+000000000000
+~~~
 
-The template uses [Tabler Icons](https://tabler.io/icons) for all icons. If you wish to add more icons and have it look consistent with what's already there, you can browse through their extensive icon library.
+## 🌍 Hosting Your Portfolio
 
-## Project Structure
+Once your portfolio is ready, follow these steps to deploy it online.
 
-```
-devportfolio/
-├── public/
-│   └── favicon.svg          # Site favicon
-├── src/
-│   ├── components/          # Astro components
-│   │   ├── About.astro      # About section
-│   │   ├── Education.astro  # Education section
-│   │   ├── Experience.astro # Work experience section
-│   │   ├── Footer.astro     # Site footer
-│   │   ├── Header.astro     # Navigation header
-│   │   ├── Hero.astro       # Hero/intro section
-│   │   └── Projects.astro   # Projects showcase
-│   ├── pages/
-│   │   └── index.astro      # Main page layout
-│   ├── styles/
-│   │   └── global.css       # Global styles
-│   └── config.ts            # Site configuration
-├── astro.config.mjs         # Astro configuration
-├── package.json             # Project dependencies
-├── tailwind.config.js       # Tailwind configuration
-└── tsconfig.json            # TypeScript configuration
-```
+###  Deploy with GitHub Pages
+Go to **Settings > Pages** in your repository and configure the deployment:
 
-## Local Development
+1. Set Source to **Deploy from Branch**.
+2. Choose the branch you want to deploy.
+3. Deply from your terminal 
 
-If you'd like to run it locally:
+~~~sh
+npm run deploy
+~~~
 
-```
-git clone https://github.com/RyanFitzgerald/devportfolio.git
-cd devportfolio
-npm install
-```
+Your portfolio will be live at:
 
-After that, start up the Astro dev server with:
+~~~
+https://your-github-username.github.io/your-repo-name/
+~~~
 
-```
-npm run dev
-```
+---
 
-## Deployment
+Your portfolio should now be set up and live. Enjoy!
 
-The template can be deployed to any static hosting service easily (and in most cases, completely free). Here are some options:
 
-- To deploy with Netlify, [click here](https://docs.astro.build/en/guides/deploy/netlify/).
-- To deploy with Vercel, [click here](https://docs.astro.build/en/guides/deploy/vercel/).
-- To deploy with GitHub Pages, [click here](https://docs.astro.build/en/guides/deploy/github/).
-- To deploy with Cloudflare Pages, [click here](https://docs.astro.build/en/guides/deploy/cloudflare/).
-- To deploy with Render, [click here](https://docs.astro.build/en/guides/deploy/render/).
-
-Want to deploy somewhere else? Find more guides [here](https://docs.astro.build/en/guides/deploy/).
-
-## Changelog
-
-To view the changelog, see CHANGELOG.md.
-
-## License
-
-This project is fully and completely MIT. See LICENSE.md.
-
-## Questions?
-
-Feel free to reach out on [X (Twitter)](https://x.com/rfitzio) if you have any questions or need help.
