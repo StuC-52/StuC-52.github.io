@@ -7,5 +7,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: "'https://stuc-52.github.io'",
+  site: 'https://stuc-52.github.io',
 });
